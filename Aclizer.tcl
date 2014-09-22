@@ -46,10 +46,10 @@ foreach x $result {if {[regexp {^([0-9]+\.){3}[0-9]+$} $x match]} {
 	ios_config $command}
 
 #Now we also have a few permanant bans, and our permit any to add
-ios_config "access-list 130 deny   ip 100.43.0.0 0.0.255.255 any"
-ios_config "access-list 130 deny   udp any 199.168.129.240 0.0.0.15 eq 80 log"
-ios_config "access-list 130 deny   udp any 199.168.129.240 0.0.0.15 eq 8080 log"
-ios_config "access-list 130 deny icmp any 208.72.105.73 0.0.0.0"
+ios_config "access-list 130 deny   ip badguyip 0.0.255.255 any"
+ios_config "access-list 130 deny   udp any goodguyip 0.0.0.15 eq 80 log"
+ios_config "access-list 130 deny   udp any goodguyip 0.0.0.15 eq 8080 log"
+ios_config "access-list 130 deny icmp any goodguyip 0.0.0.0"
 ios_config "access-list 130 permit ip any any"
 
 #At this point, we've written out all our ACL's and are ready to apply to the appropriate interface
